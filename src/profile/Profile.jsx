@@ -1,15 +1,21 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { toggleShowName } from '../store/profile/actions'
-import { store } from '../store/store'
+import { useDispatch, useSelector } from 'react-redux'
+import Checkbox from '@mui/material/Checkbox'
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import Favorite from '@mui/icons-material/Favorite'
+
+import { toggleShowName, toggleCheckBox } from '../store/profile/actions'
 import './Profile.sass'
 
 export default function Profile() {
     const showName = useSelector((state) => state.showName)
+    const checkBox = useSelector((state) => state.checkBox)
     const dispatch = useDispatch()
-    const handleClick = () => {
+    const handleClickButton = () => {
         dispatch(toggleShowName)
+    }
+    const handleClickCheckBox = () => {
+        dispatch(toggleCheckBox)
     }
     return (
         <div className='profile'>
@@ -17,7 +23,11 @@ export default function Profile() {
                 Профиль
             </div>
             {showName && <div>Name show - true</div>}
-            <button onClick={handleClick}>Toggle Name</button>
+            <button onClick={handleClickButton}>Toggle Name</button>
+            <div className="checkboxWrp">
+                <Checkbox onChange={handleClickCheckBox} checked={checkBox} icon={<FavoriteBorder />} checkedIcon={<Favorite />} color='error' />
+                {checkBox && <span style={{color: 'purple', fontWeight: '700'}}>Redux</span>}
+            </div>
         </div>
     )
 }
