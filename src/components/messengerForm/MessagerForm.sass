@@ -1,0 +1,39 @@
+.messagerForm
+    margin-top: auto
+    &__body
+        display: flex
+        align-items: flex-end
+        padding: 10px
+        font-size: 18px
+        border-radius: 5px
+        background-color: #fff
+
+    &__textarea
+
+    &__txtInput
+        flex: 0 1 100%
+        align-self: center
+        min-width: 0
+        max-height: calc(4em * 1.4)
+        margin: 0 10px 0 0
+        padding: 0 0 3px 0
+        color: rgba(#000, .5 )
+        overflow: auto
+        word-wrap: break-word
+        border: none !important
+        outline: none !important
+        &._focus
+            color: rgba(#000,1)
+
+    &__button
+        flex: 0 0 auto
+        display: block
+        width: 40px
+        height: 40px
+        border: none
+        border-radius: 50%
+        background: #372963 url('./send.svg') 45% 55% / 22px 22px no-repeat
+        cursor: pointer
+        transition: transform .2s ease
+        &:hover
+            transform: rotateZ(45deg)

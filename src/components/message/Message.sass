@@ -1,0 +1,56 @@
+$yl: #ffff00
+$dp: #372963
+$grn: #00FF9C
+
+.message
+    display: flex
+    justify-content: flex-start
+    padding: 4px 12px
+    overflow: hidden
+
+    &__body
+        position: relative
+        z-index: 2
+        display: inline-block
+        max-width: 600px
+        padding: 10px 10px 12px
+        border-radius: 10px
+        background-color: $dp
+    &__txt
+        font-size: 16px
+        color: $grn
+    &__time
+        float: right
+        margin: 10px 0 0 5px
+        transform: translateY(30%)
+        font-size: 12px
+        font-weight: 700
+        line-height: 1
+        color: #7155ce
+        white-space: nowrap
+    &__decor
+        position: absolute
+        top: 0
+        left: 0
+        display: block
+        transform: translate(-50%, -20%)
+    &__triangle
+        display: block
+        width: 20px
+        height: 20px
+        fill: $dp
+        
+    &.isOut
+        justify-content: flex-end
+        .message__body
+            background-color: #fff
+        .message__txt
+            color: $dp
+        .message__decor
+            right: 0
+            left: unset
+            transform: translate(50%, -20%)
+        .message__triangle
+            fill: #fff
+        .message__time
+            color: #b1b1b1

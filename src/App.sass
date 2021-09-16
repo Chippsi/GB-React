@@ -1,0 +1,51 @@
+.App
+  flex: 0 1 100%
+  display: flex
+  padding: 0 20px
+  &__container
+    display: flex
+    min-height: 100%
+  &__grid
+    flex: 0 0 100%
+    display: flex
+    box-shadow: 0 0 20px 5px #00FF9C
+  &__side
+    position: relative
+    flex: 0 0 300px
+    background-color: #473580
+    border-right: 1px solid #372963
+
+  &__body
+    flex: 0 1 100%
+    display: flex
+    flex-direction: column
+    padding: 25px 15px 15px
+    background-color: #473580
+    //margin-left: 25px
+  &__hello
+    margin: auto
+    font-size: 25px
+    font-weight: 700
+    color: rgba(0, 255, 157, .85)
+    user-select: none
+  &__msgList
+    flex: 0 1 100%
+  &__addChat
+    position: absolute
+    bottom: 18px
+    right: 15px
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 55px
+    height: 55px
+    font-size: 42px
+    line-height: 1
+    font-weight: 700
+    color: #473580
+    border-radius: 50%
+    box-shadow: 0 0 8px 2px #ffff00
+    background-color: #ffff00
+    outline: none !important
+    border: none !important
+    cursor: pointer
