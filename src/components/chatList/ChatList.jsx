@@ -1,26 +1,29 @@
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import { Link } from "react-router-dom"
+import { v4 as uuidv4 } from 'uuid'
+import { useDispatch } from 'react-redux'
+import { addChat } from '../../store/chats/actions'
 
 import './ChatList.sass'
+import ChatItem from '../chatItem/ChatItem'
 
-export default function chatList({ chats }) {
-    const chatsJsx = chats.map((chat) => {
-        return (
-            <Link key={chat[0]} to={`/chats/${chat[0]}`}>
-                <ListItem className='chatList__item' /* disabled */ divider button>
-                    <ListItemText className='chatList__txt'>{chat[1].name}</ListItemText>
-                </ListItem>
-            </Link>
-        )
-    })
+export default function ChatList({ chats }) {
+    const dispatch = useDispatch()
+
+    const chatsJSX = Object.entries(chats).map((chat) => <ChatItem chatID={chat[0]} chatName={chat[1].name} />)
+
+    const handleAddChat = () => {
+        const newChatName = prompt('Введите название чата', 'Новый чат')
+        const newChatID = uuidv4()
+        if (!newChatName || !newChatID) return
+        dispatch(addChat(newChatID, newChatName))
+    }
 
     return (
         <div>
             <List className='chatList'>
-                {chatsJsx}
+                {chatsJSX}
             </List>
+            <button onClick={handleAddChat} className='App__addChat' type='button'>+</button>
         </div>
     )
 }
