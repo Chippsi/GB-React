@@ -11,7 +11,7 @@ export default function ChatList() {
     const chats = useSelector(selectChats)
     const dispatch = useDispatch()
 
-    const renderChats = () => Object.entries(chats).map(([id, { name }]) => <ChatItem chatID={id} chatName={name} />)
+    const renderChats = () => Object.entries(chats).map(([id, { name }]) => <ChatItem key={id} chatID={id} chatName={name} />)
 
     const handleAddChat = () => {
         const newChatName = prompt('Введите название чата', 'Новый чат')
@@ -23,7 +23,7 @@ export default function ChatList() {
     return (
         <div>
             <List className='chatList'>
-                {renderChats}
+                {renderChats()}
             </List>
             <button onClick={handleAddChat} className='App__addChat' type='button'>+</button>
         </div>
