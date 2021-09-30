@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
@@ -9,9 +10,10 @@ import { getMessageList, isExistChat } from './store/chats/selectors'
 
 export default function App() {
   const { chatID } = useParams()
-  const messages = useSelector(getMessageList(chatID))
+  /* const messageList = useMemo(getMessageList(chatID), [chatID]) */
+  const messages = useSelector(getMessageList(chatID) /* messageList */ )
   const chatExist = useSelector(isExistChat(chatID))
-
+  console.log('rerender');
   return (
     <div className="App">
       <div className="App__container container">

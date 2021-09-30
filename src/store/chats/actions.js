@@ -36,7 +36,17 @@ const sendMessage = (chatID, author, txt, time, id) => ({
 /* const botTimeoutDcorator = (callback) => { //!
     let botTimeout
     return callback
-} */
+}
+
+export const sendMessageThunk = botTimeoutDcorator( (chatID, author, txt, time, id) => (dispatch) => {
+    dispatch(sendMessage(chatID, author, txt, time, id))
+    if (USER_NAME === author) {
+        botTimeout && clearTimeout(sendMessageThunk.botTimeout)
+        botTimeout = setTimeout(() => {
+            dispatch(sendMessageThunk(chatID, 'BOT', 'Бот Валерий на связи!', getTime(), uuidv4()))
+        }, 1500)
+    }
+}) */
 
 export const sendMessageThunk = (chatID, author, txt, time, id) => (dispatch) => {
     dispatch(sendMessage(chatID, author, txt, time, id))
