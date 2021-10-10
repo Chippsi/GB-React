@@ -1,15 +1,21 @@
+import { useEffect } from 'react'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@material-ui/core/ListItemText'
 import IconButton from '@mui/material/IconButton'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { Link } from "react-router-dom"
-import { useDispatch } from 'react-redux'
 
-import { delChat } from '../../store/chats/actions'
+import { delChatFb, initMessagesFbThunk, removeMessagesEventListeners } from '../../store/chats/actions'
+import { useDispatch } from 'react-redux'
 
 export default function ChatItem({ chatID, chatName }) {
     const dispatch = useDispatch()
-    const handleDeleteChat = () => dispatch(delChat(chatID))
+    useEffect(() => {
+        dispatch(initMessagesFbThunk(chatID))
+        return () => removeMessagesEventListeners(chatID)
+    }, [])
+
+    const handleDeleteChat = () => delChatFb(chatID)
 
     return (
         <li key={chatID} className="chatList__itemBox">

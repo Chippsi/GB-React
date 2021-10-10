@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { v4 as uuidv4 } from 'uuid'
 
 import './MessagerForm.sass'
-import { sendMessageThunk } from '../../store/chats/actions'
+import { sendMessageFb } from '../../store/chats/actions'
 import { getTime } from '../../functions/functions'
 
 export default function Textarea({ chatID }) {
@@ -57,7 +56,7 @@ export default function Textarea({ chatID }) {
         e.preventDefault()
 
         if (input.value) {
-            dispatch(sendMessageThunk(chatID, 'Anton', input.value, getTime(), uuidv4()))
+            sendMessageFb(chatID, 'Anton', input.value, getTime())
             setInput({
                 ...input,
                 value: '',

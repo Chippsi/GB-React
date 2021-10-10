@@ -1,6 +1,8 @@
+import React from 'react'
 import './Message.sass'
 import TriangleSvg from './icons/Triangle'
-export default function Message({ txt, time, firstEl, isOut }) {
+
+export default React.memo(function Message({ txt, time, firstEl, isOut }) {
     return (
         <div className={`message ${isOut ? 'isOut' : ''}`}>
             <div className='message__body'>
@@ -10,4 +12,4 @@ export default function Message({ txt, time, firstEl, isOut }) {
             </div>
         </div>
     )
-}
+})

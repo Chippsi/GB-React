@@ -4,9 +4,9 @@ import Checkbox from '@mui/material/Checkbox'
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
 import Favorite from '@mui/icons-material/Favorite'
 
-import { toggleShowName, toggleCheckBox } from '../store/profile/actions'
+import { toggleShowName, toggleCheckBox } from '../../store/profile/actions'
 import './Profile.sass'
-import { selectCheckBox, selectShowName } from '../store/profile/selectors'
+import { selectCheckBox, selectShowName } from '../../store/profile/selectors'
 
 export default function Profile() {
     const showName = useSelector(selectShowName)

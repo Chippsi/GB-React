@@ -1,4 +1,5 @@
-import React from 'react'
+import { onAuthStateChanged } from '@firebase/auth'
+import React, { useEffect, useState } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -6,31 +7,53 @@ import {
 } from "react-router-dom"
 
 import App from '../App'
-import Home from '../home/Home'
-import NotFound from '../notFound/NotFound'
-import Posts from '../posts/Posts'
-import Profile from '../profile/Profile'
+import Loader from '../components/loader/Loader'
+import Home from '../pages/home/Home'
+import Login from '../pages/login/Login'
+import NotFound from '../pages/notFound/NotFound'
+import Posts from '../pages/posts/Posts'
+import Profile from '../pages/profile/Profile'
+import { auth, logIn, logOut } from '../services/firebase'
+import PrivateRoute from './PrivateRoute'
+import PublicRoute from './PublicRoute'
 
-export default function routes() {
+export default function Routes() {
+    const [authed, setAuthed] = useState(null)
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            user ? setAuthed(true) : setAuthed(false)
+        })
+        return unsubscribe
+    }, [])
+
     return (
-        <Router>
-            <Switch>
-                <Route exact path='/'>
-                    <Home/>
-                </Route>
-                <Route exact path='/posts'>
-                    <Posts/>
-                </Route>
-                <Route exact path='/chats/:chatID?'>
-                    <App/>
-                </Route>
-                <Route exact path='/profile'>
-                    <Profile/>
-                </Route>
-                <Route path='*'>
-                    <NotFound/>
-                </Route>
-            </Switch> 
-        </Router> 
+        <>
+            {authed === null ?
+                <Loader />
+                :
+                <Router>
+                    <Switch>
+                        <Route exact path='/'>
+                            <Home auth={authed} signOut={logOut} />
+                        </Route>
+                        <PublicRoute exact path='/login' auth={authed} >
+                            <Login login={logIn} />
+                        </PublicRoute>
+                        <Route exact path='/posts'>
+                            <Posts />
+                        </Route>
+                        <PrivateRoute exact path='/chats/:chatID?' auth={authed}>
+                            <App />
+                        </PrivateRoute>
+                        <PrivateRoute exact path='/profile' auth={authed}>
+                            <Profile />
+                        </PrivateRoute>
+                        <Route path='*'>
+                            <NotFound />
+                        </Route>
+                    </Switch>
+                </Router>
+            }
+        </>
     )
 }
