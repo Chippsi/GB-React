@@ -6,10 +6,12 @@ import Favorite from '@mui/icons-material/Favorite'
 
 import { toggleShowName, toggleCheckBox } from '../store/profile/actions'
 import './Profile.sass'
+import { selectCheckBox, selectShowName } from '../store/profile/selectors'
 
 export default function Profile() {
-    const showName = useSelector((state) => state.showName)
-    const checkBox = useSelector((state) => state.checkBox)
+    const showName = useSelector(selectShowName)
+    const checkBox = useSelector(selectCheckBox)
+    console.log(showName, checkBox);
     const dispatch = useDispatch()
     const handleClickButton = () => {
         dispatch(toggleShowName)

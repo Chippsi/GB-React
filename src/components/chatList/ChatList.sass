@@ -1,15 +1,25 @@
 .chatList
-    & > a
-        display: block
-        text-decoration: none
-        color: #00FF9C
+    &__itemBox 
+        position: relative
+        & > a
+            display: block
+            text-decoration: none
+            color: #00FF9C
 
     &__item
+        padding-right: 50px
         &.MuiListItem-divider
             border-bottom: 1px solid #372963
         &.Mui-disabled
             .chatList__txt
                 color: #fff
+    &__item-delete
+        position: absolute !important
+        right: 10px
+        top: 50%
+        transform: translateY(-50%)
+        color: #ff4081 !important
+
     &__txt
         text-decoration: none
         color: #00FF9C
