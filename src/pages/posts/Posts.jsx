@@ -2,8 +2,8 @@ import { Card, CardContent, Typography } from "@material-ui/core"
 import { v4 as uuidv4 } from 'uuid'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useDispatch, useSelector } from "react-redux"
-import { getError, getPosts, getStatus } from "../store/posts/selectors"
-import { getPostsThunk } from "../store/posts/actions"
+import { getError, getPosts, getStatus } from "../../store/posts/selectors"
+import { getPostsThunk } from "../../store/posts/actions"
 import { useCallback, useEffect } from "react"
 
 

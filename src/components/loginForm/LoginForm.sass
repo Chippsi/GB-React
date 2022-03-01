@@ -1,0 +1,29 @@
+.loginForm
+    width: 300px
+    padding: 20px
+    margin: auto
+    background-color: #473580
+    border-radius: 10px
+    box-shadow: 0 0 20px 5px #00ff9c
+    &__btn
+        display: flex !important
+        margin: 0px auto !important
+        margin-top: 25px !important
+        background-color: #fff
+    &__inpWrp
+        &:not(:last-of-type)
+            padding-bottom: 13px !important
+        label
+            color: #fff
+            &[data-shrink='true']
+                color: #fff
+                & + .MuiInput-underline:before,
+                & + .MuiInput-underline:after,
+                & + .MuiInput-underline.Mui-focused:before
+                    border-color: #fff !important
+        .MuiInput-underline:before,
+        .MuiInput-underline:after
+            border-color: #fff !important
+
+        input
+            color: #00ff9c

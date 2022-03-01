@@ -10,10 +10,9 @@ import { getMessageList, isExistChat } from './store/chats/selectors'
 
 export default function App() {
   const { chatID } = useParams()
-  /* const messageList = useMemo(getMessageList(chatID), [chatID]) */
-  const messages = useSelector(getMessageList(chatID) /* messageList */ )
+  const messages = useSelector(getMessageList(chatID))
   const chatExist = useSelector(isExistChat(chatID))
-  console.log('rerender');
+  
   return (
     <div className="App">
       <div className="App__container container">
