@@ -8,6 +8,7 @@ import {
 import App from '../App'
 import Home from '../home/Home'
 import NotFound from '../notFound/NotFound'
+import Posts from '../posts/Posts'
 import Profile from '../profile/Profile'
 
 export default function routes() {
@@ -16,6 +17,9 @@ export default function routes() {
             <Switch>
                 <Route exact path='/'>
                     <Home/>
+                </Route>
+                <Route exact path='/posts'>
+                    <Posts/>
                 </Route>
                 <Route exact path='/chats/:chatID?'>
                     <App/>

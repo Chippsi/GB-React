@@ -9,6 +9,7 @@ export default function Home() {
     <div className="home">
       <div className="home__container container">
         <ul className="home__menu">
+        <li className="home__menu-item"><Link to='/posts'>Посты</Link></li>
           <li className="home__menu-item"><Link to='/chats'>Чаты</Link></li>
           <li className="home__menu-item"><Link to='/profile'>Профиль</Link></li>
         </ul>
